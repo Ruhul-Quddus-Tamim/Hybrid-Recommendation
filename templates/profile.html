@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+        .profile-header {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .profile-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .movie-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .movie-list h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+        .scrollable-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .form-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        .nav-link.active {
+            font-weight: bold;
+        }
+        .badge-primary {
+            background-color: #007bff;
+        }
+        .badge-secondary {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MovieLens</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="profile-header">
+            <h1>User Profile</h1>
+        </div>
+        <div id="userProfile" class="profile-info text-center">
+            <p><strong>User ID:</strong> <span id="userIdText"></span></p>
+            <p><strong>Name:</strong> <span id="userNameText"></span></p>
+            <p><strong>Email:</strong> <span id="userEmailText"></span></p>
+        </div>
+        <div class="movie-list">
+            <h2>Watched/Rated Movies:</h2>
+            <ul id="userRatings" class="list-group mt-3 scrollable-list"></ul>
+        </div>
+        <div class="movie-list">
+            <h2>Tags Added:</h2>
+            <ul id="userTags" class="list-group mt-3 scrollable-list"></ul>
+        </div>
+        <div class="form-section">
+            <form id="userForm" class="mt-5">
+                <div class="form-group">
+                    <label for="userId">User ID:</label>
+                    <input type="number" id="userId" class="form-control" placeholder="Enter User ID">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Get Profile</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#userForm').submit(function(event) {
+                event.preventDefault();
+                var userId = $('#userId').val();
+                if (userId) {
+                    $.ajax({
+                        url: '/profile/' + userId,
+                        method: 'GET',
+                        success: function(data) {
+                            $('#userIdText').text(data.userId);
+                            $('#userNameText').text(data.name);
+                            $('#userEmailText').text(data.email);
+                            $('#userRatings').empty();
+                            if (data.ratings.length > 0) {
+                                data.ratings.forEach(function(rating) {
+                                    $('#userRatings').append('<li class="list-group-item"><span>' + rating.movie + '</span> <span class="badge badge-primary badge-pill">' + rating.rating + '</span></li>');
+                                });
+                            } else {
+                                $('#userRatings').append('<li class="list-group-item">No ratings available</li>');
+                            }
+                            $('#userTags').empty();
+                            if (data.tags.length > 0) {
+                                data.tags.forEach(function(tag) {
+                                    $('#userTags').append('<li class="list-group-item"><span>' + tag.movie + '</span> <span class="badge badge-secondary badge-pill">' + tag.tag + '</span></li>');
+                                });
+                            } else {
+                                $('#userTags').append('<li class="list-group-item">No tags available</li>');
+                            }
+                        },
+                        error: function(error) {
+                            console.error(error);
+                            $('#userProfile').html('<p class="text-danger">Failed to load user profile. Please try again.</p>');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
