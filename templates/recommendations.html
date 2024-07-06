@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommendations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .hero-section {
+            background-image: url('/static/image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: rgba(225, 244, 255, 0.9);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+        }
+        .recommendation-card {
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .recommendation-card:hover {
+            transform: scale(1.05);
+        }
+        .recommendation-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .recommendation-genres {
+            font-size: 1rem;
+            color: #555;
+        }
+        .recommendation-rating {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .container {
+            max-width: 1000px;
+            margin-top: 30px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MovieLens</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1>Recommended Movies for You</h1>
+            <p>Discover movies you'll love based on your preferences</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Top Picks</h2>
+        <div id="recommendations" class="row">
+            <!-- Recommendations will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const isNew = urlParams.get('is_new') === 'true';
+            
+            $.get(`/recommendations?user_id=${userId}`, function (data) {
+                const recommendationsDiv = $('#recommendations');
+                recommendationsDiv.empty(); // Clear any existing content
+                data.recommendations.forEach(function (rec) {
+                    const card = `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card recommendation-card">
+                                <div class="card-body">
+                                    <h5 class="card-title recommendation-title">${rec.title}</h5>
+                                    <p class="card-text recommendation-genres">${rec.genres}</p>
+                                    ${rec.predictedRating ? `<p class="card-text recommendation-rating">Predicted Rating: ${rec.predictedRating.toFixed(2)}</p>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    recommendationsDiv.append(card);
+                });
+            });
+        });
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
