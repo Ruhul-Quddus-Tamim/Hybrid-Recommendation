@@ -137,13 +137,13 @@ To get movie recommendations, enter the user ID in the input field and click on 
 
 *Note:* If the user has less than around 4 or 5 preferences, then it would not recommend any top picks for that users. Watched/Rated movies should be at least 8 items.
 
-<img width="1280" alt="recommendations" src="https://github.com/Ruhul-Quddus-Tamim/Housing-for-training-pipeline/assets/86849949/51ddf1af-b25b-4e87-9ad7-9b8080e2fffe">
+<img width="1280" alt="recommendations" src="assets/recommendations.png">
 
 ### User Preferences
-<img width="1280" alt="preferences" src="https://github.com/Ruhul-Quddus-Tamim/Housing-for-training-pipeline/assets/86849949/d685a066-da71-4800-a8aa-cbf36628640d">
+<img width="1280" alt="preferences" src="assets/preferences.png">
 
 ### User Profile
-<img width="1280" alt="user_profile" src="https://github.com/Ruhul-Quddus-Tamim/Housing-for-training-pipeline/assets/86849949/6daf5dd1-dc8b-4816-96ce-0c00a19bc733">
+<img width="1280" alt="user_profile" src="assets/user_profile.png">
 
 
 ## Cold Start Recommendations
