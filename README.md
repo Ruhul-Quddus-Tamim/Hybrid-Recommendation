@@ -1,6 +1,6 @@
 # Movie Recommendation Engine
 
-This project aims to build a robust movie recommendation engine using Neo4j for graph-based data storage and processing. The data ingestion process is optimized using Python and parallel processing to handle large datasets efficiently.
+This project aims to build a robust movie recommendation engine using Neo4j for graph-based data storage and processing. The data ingestion process is optimized and parallel processing to handle large datasets efficiently.
 
 ## Table of Contents
 
