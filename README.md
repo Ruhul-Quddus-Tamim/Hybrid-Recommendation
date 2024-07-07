@@ -133,15 +133,15 @@ Alternatively, if you want to build docker image - The `Dockerfile` will define 
 
 1. Build the Docker image:
 
-`
+```
 docker-compose build
-`
+```
 
 2. Run the Docker container:
 
-`
+```
 docker-compose up
-`
+```
 
 ### Accessing the Application
 Open your web browser and navigate to http://127.0.0.1:5001 to access the application. You can register new users and get movie recommendations.
