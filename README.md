@@ -65,6 +65,8 @@ Recommendation Engine/
 ├── .env
 ├── requirements.txt
 └── ingest_data.py
+└── Dockerfile
+└── docker-compose.yml
 ```
 
 ### Installation
@@ -117,6 +119,9 @@ python ingest_data.py
 ## Usage
 #### Running the Application
 To start the Flask application, run the `app.py` script. This will start the web server on http://127.0.0.1:5001.
+
+Alternatively, if you want to build docker image - The `Dockerfile` will define the environment for your application, while the `docker-compose.yml` file will allow you to orchestrate multiple services (like your Flask app and Neo4j database) easily.
+
 ``` 
 python app.py
 ```
