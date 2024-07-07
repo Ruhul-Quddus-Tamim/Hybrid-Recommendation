@@ -127,9 +127,9 @@ Open your web browser and navigate to http://127.0.0.1:5001 to access the applic
 ### Registering a New User
 To register a new user, click on the "Register New User" button, fill in the user ID, name, and email, and submit the form.
 
-<img width="1280" alt="homepage" src="https://github.com/Ruhul-Quddus-Tamim/Housing-for-training-pipeline/assets/86849949/f36e3c1e-5e55-4572-8fcc-209a5c61fe47">
+<img width="1280" alt="homepage" src="assets/homepage.png">
 
-<img width="1280" alt="registration" src="https://github.com/Ruhul-Quddus-Tamim/Housing-for-training-pipeline/assets/86849949/e932dd5f-a2a5-416b-815a-5ddbf05c02ee">
+<img width="1280" alt="registration" src="assets/registration.png">
 
 
 ### Getting Recommendations
