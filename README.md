@@ -112,7 +112,7 @@ python ingest_data.py
 
 ### Verify after ingestion, e.g.
 
-<img width="1191" alt="Screenshot 2024-06-23 at 1 10 42 PM" src="https://github.com/Ruhul-Quddus-Tamim/Housing-for-training-pipeline/assets/86849949/e1f2a491-9ffa-48bb-913b-51eb5889511c">
+<img width="1191" alt="Screenshot 2024-06-23 at 1 10 42 PM" src="assets/ingestion.png">
 
 ## Usage
 #### Running the Application
