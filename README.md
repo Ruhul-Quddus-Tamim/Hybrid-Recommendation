@@ -7,7 +7,7 @@ This project aims to build a robust movie recommendation engine using Neo4j for 
 - [Overview](#overview)
 - [Dataset](#dataset)
 - [Environment Setup](#environment-setup)
-- [Project Structure] (#project-structure)
+- [Project Structure](#project-structure)
 - [Data Ingestion](#data-ingestion)
 - [Usage](#usage)
 - [Cold Start Recommendations](#cold-start-recommendations)
