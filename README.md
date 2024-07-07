@@ -54,6 +54,7 @@ Recommendation Engine/
 │
 ├── static/
 │   ├── image.jpg
+│   ├── .........
 │
 ├── templates/
 │   ├── index.html
@@ -110,7 +111,10 @@ To ingest the data into the Neo4j database, run the `ingest_data.py` script. Thi
 python ingest_data.py
 ```
 
-### Verify after ingestion, e.g.
+### Verify Graph DBMS after ingestion
+<img width="1191" alt="Screenshot 2024-06-23 at 1 10 42 PM" src="assets/graphDBMS.png">
+
+### Verify data after ingestion, e.g.
 
 <img width="1191" alt="Screenshot 2024-06-23 at 1 10 42 PM" src="assets/ingestion.png">
 
@@ -135,7 +139,10 @@ To register a new user, click on the "Register New User" button, fill in the use
 ### Getting Recommendations
 To get movie recommendations, enter the user ID in the input field and click on "Get Recommendations".
 
-*Note:* If the user has less than around 4 or 5 preferences, then it would not recommend any top picks for that users. Watched/Rated movies should be at least 8 items.
+*Note:* 
+- If the user has less than around 4 or 5 preferences, then it would not recommend any top picks for that users. Watched/Rated movies should be at least 8 items. For that particular user, it needs to go to the `Preferences` tab to add ratings/tags further.
+
+- If the user has just registered now and completely new, there would be no preferences or watched movies, then it will use the Cold Start algorithm for those particular users
 
 <img width="1280" alt="recommendations" src="assets/recommendations.png">
 
@@ -150,6 +157,6 @@ To get movie recommendations, enter the user ID in the input field and click on 
 For new users with no prior interactions, the system will apply a cold start algorithm to generate recommendations. These recommendations are based on popular, trending, and diverse movies to provide a good starting point for new users.
 
 ## Acknowledgments
-- MovieLens: for providing the dataset.
-- Neo4j: for the graph database platform.
-- Flask: for the web framework.
+- *MovieLens*: For providing the dataset.
+- *Neo4j*: For the graph database platform.
+- *Flask*: For the web framework.
